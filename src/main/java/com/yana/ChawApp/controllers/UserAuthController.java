@@ -2,7 +2,6 @@ package com.yana.ChawApp.controllers;
 
 import java.util.Collections;
 
-import javax.management.relation.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yana.ChawApp.DTO.RegistrationRequest;
+import com.yana.ChawApp.Model.Role;
 import com.yana.ChawApp.Model.UserAuth;
 import com.yana.ChawApp.Repository.RoleRepository;
 import com.yana.ChawApp.Repository.UserAuthRepository;
@@ -55,7 +55,7 @@ public class UserAuthController {
             passwordEncoder.encode(registrationRequest.getPassword())
         );
 
-        Role role = roleRepository.findByName("Role_Admin").get();
+        Role role = roleRepository.findByName("ROLE_ADMIN").get();
         user.setRoles(Collections.singleton(role));
 
         userAuthRepository.save(user);

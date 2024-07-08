@@ -38,8 +38,8 @@ SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
     http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests((authorize) ->
-              authorize.requestMatchers(HttpMethod.GET, "/api/v2/**").permitAll()
-                       .requestMatchers("/api/v2/auth/**").permitAll()
+              authorize.requestMatchers(HttpMethod.GET, "/api/v1/**").permitAll()
+                       .requestMatchers("/api/v1/auth/**").permitAll()
                        .anyRequest().authenticated()
 
         );
