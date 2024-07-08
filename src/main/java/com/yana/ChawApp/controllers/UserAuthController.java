@@ -19,6 +19,7 @@ import com.yana.ChawApp.Model.UserAuth;
 import com.yana.ChawApp.Repository.RoleRepository;
 import com.yana.ChawApp.Repository.UserAuthRepository;
 
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class UserAuthController {
@@ -54,8 +55,8 @@ public class UserAuthController {
             passwordEncoder.encode(registrationRequest.getPassword())
         );
 
-        Role role = roleRepository.findByName("ROLE_ADMIN").get();
-        user.setRole(Collections.singleton(role));
+        Role role = roleRepository.findByName("Role_Admin").get();
+        user.setRoles(Collections.singleton(role));
 
         userAuthRepository.save(user);
 

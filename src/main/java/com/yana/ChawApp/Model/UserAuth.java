@@ -61,5 +61,10 @@ public Set<Role> getRoles() {
     return roles;
 }
 
+public void setRoles(Set<javax.management.relation.Role> singleton) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setRoles'");
+}
+
 
 }
