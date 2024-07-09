@@ -12,10 +12,12 @@ import com.yana.ChawApp.NotFoundException.UsersNotFoundException;
 import com.yana.ChawApp.Repository.UsersRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@RequestMapping("/api/v1/users")
 public class UsersController {
 
     UsersRepository repo;
@@ -24,24 +26,24 @@ public class UsersController {
         this.repo = repo;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/all")
     public List<Users> getUsers(){
         return repo.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
      public Users getUsers(@PathVariable Long id){
        return repo.findById(id)
        .orElseThrow(()-> new UsersNotFoundException(id));
      }
 
-    @PostMapping("/users/new")
+    @PostMapping("/new")
     public String addUsers(@RequestBody Users newUsers) {
         repo.save(newUsers);
         return "A new Users is added. Yey!";
     }
 
-    @PutMapping("users/edit/{id}")
+    @PutMapping("/edit/{id}")
     public Users updateUsers(@PathVariable Long id, @RequestBody Users newUsers){
          return repo.findById(id)
          .map(Users ->{
@@ -54,7 +56,7 @@ public class UsersController {
          });
     }
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/delete/{id}")
    public String deleteUsers (@PathVariable Long id){
     repo.deleteById(id);
     return "A Users is deleted!";

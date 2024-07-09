@@ -12,9 +12,11 @@ import com.yana.ChawApp.NotFoundException.OrderNotFoundException;
 import com.yana.ChawApp.Repository.OrderRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
+@RequestMapping("/api/v1/order")
 public class OrderController {
 
     OrderRepository repo;
@@ -23,7 +25,7 @@ public class OrderController {
         this.repo = repo;
     }
 
-    @GetMapping("/Orders")
+    @GetMapping("/all")
     public List<Order> getOrders(){
         return repo.findAll();
     }
@@ -34,14 +36,14 @@ public class OrderController {
        .orElseThrow(()-> new OrderNotFoundException(id));
      }
 
-    @PostMapping("/Order/new")
+    @PostMapping("/new")
     public String addOrder(@RequestBody Order newOrder) {
         repo.save(newOrder);
         return "A new Order is added. Yey!";
     }
 
 
-    @DeleteMapping("/Order/delete/{id}")
+    @DeleteMapping("/delete/{id}")
    public String deleteOrder (@PathVariable Long id){
     repo.deleteById(id);
     return "A Order is deleted!";
