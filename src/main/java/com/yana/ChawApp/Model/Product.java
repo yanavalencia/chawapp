@@ -12,13 +12,15 @@ public class Product {
     private String productName;
     private String description;
     private double price;
+    private String url;
 
     Product(){}
     
-    public Product(String productName, String description, double price) {
+    public Product(String productName, String description, double price,String url) {
         this.productName = productName;
         this.description = description;
         this.price = price;
+        this.url = url;
     }
     public void setProductName(String productName) {
         this.productName = productName;
@@ -29,6 +31,10 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
     public long getId() {
         return id;
     }
@@ -41,6 +47,9 @@ public class Product {
     public double getPrice() {
         return price;
     }
+    public String getUrl() {
+        return url;
+    } 
     
 
 }
